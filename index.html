@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Preferences: Find Your Favourite Kitty</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
+</head>
+<body>
+    <div id="backgroundSlideshow">
+        <div class="background-slide"></div>
+        <div class="background-slide"></div>
+        <div class="background-slide"></div>
+    </div>
+
+    <div class="app-container">
+        <div id="loadingScreen" class="loading-screen">
+            <div class="loading-content">
+                <div class="cat-loader">
+                    <div class="cat-ear left-ear"></div>
+                    <div class="cat-ear right-ear"></div>
+                    <div class="cat-face"></div>
+                </div>
+                <h2>Loading adorable kitties...</h2>
+                <p>Please wait while we fetch the cutest cats for you</p>
+            </div>
+        </div>
+
+        <header class="app-header">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <h1>Paws & Preferences</h1>
+            </div>
+            <div class="stats">
+                <span id="currentCount">0</span>/<span id="totalCount">10</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div id="cardsContainer" class="cards-container">
+                <div class="instruction-card" id="instructionCard">
+                    <h2>Welcome! 🐱</h2>
+                    <p>Swipe <span class="like-text"><i class="fas fa-heart"></i> RIGHT</span> to like a kitty</p>
+                    <p>Swipe <span class="dislike-text"><i class="fas fa-times"></i> LEFT</span> to pass</p>
+                    <p>Or use the buttons below</p>
+                    <button id="startBtn" class="btn-start">Start Swiping!</button>
+                </div>
+                </div>
+
+            <div class="action-buttons">
+                <button id="dislikeBtn" class="btn-action btn-dislike" aria-label="Dislike">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button id="likeBtn" class="btn-action btn-like" aria-label="Like">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </main>
+
+        <div id="summaryScreen" class="summary-screen">
+            <div class="summary-content">
+                <div class="summary-left-panel">
+                    <h2><i class="fas fa-star"></i> Your Purr-fect Matches!</h2>
+                    
+                    <div class="summary-stats">
+                        <div class="stat-box">
+                            <div class="stat-number" id="likedCount">0</div>
+                            <div class="stat-label">Cats Liked</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="dislikedCount">0</div>
+                            <div class="stat-label">Cats Passed</div>
+                        </div>
+                    </div>
+
+                    <div class="summary-actions">
+                        <button id="playAgainBtn" class="btn-primary">
+                            <i class="fas fa-redo"></i> Play Again
+                        </button>
+                        <button id="shareBtn" class="btn-secondary">
+                            <i class="fas fa-share-alt"></i> Share Results
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="liked-cats-section">
+                    <h3>Your Favourite Kitties <span id="likedCatsCount">0</span></h3>
+                    <div id="likedCatsGrid" class="liked-cats-grid">
+                        </div>
+                    <p id="noLikedCats" class="no-liked">You didn't like any cats yet. Give them another chance! 🐱</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <div class="cat-decoration">🐱</div>
+    <div class="cat-decoration">😸</div>
+    <div class="cat-decoration">😻</div>
+    <div class="cat-decoration">🐈</div>
+    
+    <script>
+        function createParticles() {
+            if (window.innerWidth < 768) return; 
+            
+            const colors = ['rgba(255, 107, 107, 0.1)', 'rgba(255, 217, 61, 0.1)', 'rgba(107, 207, 127, 0.1)', 'rgba(77, 150, 255, 0.1)', 'rgba(157, 78, 221, 0.1)'];
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 80 + 30;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animation = `float ${Math.random() * 30 + 20}s infinite linear ${Math.random() * 10}s`;
+                document.body.appendChild(particle);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', createParticles);
+        window.addEventListener('resize', function() {
+            document.querySelectorAll('.particle').forEach(p => p.remove());
+            if (window.innerWidth >= 768) createParticles();
+        });
+    </script>
+</body>
+</html>

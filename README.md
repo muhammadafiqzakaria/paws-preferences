@@ -1,2 +1,21 @@
-# paws-preferences
+# Paws & Preferences
 
+A Tinder-like web app for discovering your favorite cats!
+
+## Features
+- Swipe right to like, left to pass
+- Mobile-responsive design
+- Beautiful animations
+- Summary of your favorite cats
+
+## How to Run
+Simply right click on `index.html`, copy the path and paste in your web browser!
+
+## Technologies Used
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Cataas API for cat images
+
+## Author
+Muhammad Afiq bin Zakaria
