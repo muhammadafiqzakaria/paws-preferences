@@ -9,7 +9,7 @@ A Tinder-like web app for discovering your favorite cats!
 - Summary of your favorite cats
 
 ## How to Run
-Simply right click on `index.html`, copy the path and paste in your web browser!
+Simply right click on `index.html` and click 'Open with Live Server' OR copy the path and paste in your web browser!
 
 ## Technologies Used
 - HTML5
