@@ -108,14 +108,15 @@ async function fetchAvailableTags() {
 }
 
 // Fetch cat images from Cataas API - USE PORTRAIT DIMENSIONS
+// Fetch cat images from Cataas API - UPDATED DIMENSIONS FOR BETTER FIT
 async function fetchCats() {
     const cats = [];
     const usedIds = new Set();
     
-    // Use PORTRAIT dimensions - taller than wide
+    // Use dimensions that fit well in the card
     const isDesktop = window.innerWidth >= 768;
-    const width = isDesktop ? 1000 : 320;
-    const height = isDesktop ? 800 : 420; // Portrait: 450x600 or 350x500
+    const width = isDesktop ? 500 : 400;
+    const height = isDesktop ? 600 : 450;
     
     for (let i = 0; i < CONFIG.totalCats; i++) {
         try {
@@ -131,7 +132,6 @@ async function fetchCats() {
                         catId = tagData[0]._id || tagData[0].id;
                         if (!usedIds.has(catId)) {
                             usedIds.add(catId);
-                            // Use PORTRAIT dimensions: width=450, height=600 (desktop)
                             catUrl = `${CONFIG.apiUrl}/${catId}?width=${width}&height=${height}`;
                         }
                     }
@@ -140,7 +140,6 @@ async function fetchCats() {
             
             if (!catUrl) {
                 const timestamp = Date.now();
-                // Use PORTRAIT dimensions
                 catUrl = `${CONFIG.apiUrl}?width=${width}&height=${height}&timestamp=${timestamp + i}`;
                 
                 tag = appState.availableTags.length > 0 
@@ -159,7 +158,6 @@ async function fetchCats() {
             
         } catch (error) {
             console.warn(`Failed to fetch cat ${i + 1}:`, error);
-            // Use PORTRAIT dimensions for fallback too
             cats.push({
                 id: i + 1,
                 url: `https://cataas.com/cat?width=${width}&height=${height}&cache=${Date.now() + i}`,
@@ -170,10 +168,10 @@ async function fetchCats() {
     }
     
     appState.cats = cats;
-    console.log('Fetched PORTRAIT cats:', cats);
+    console.log('Fetched cats with proper dimensions:', cats);
 }
 
-// Create a cat card element - USING BACKGROUND IMAGE
+// Create a cat card element - FIXED IMAGE POSITIONING
 function createCatCard(cat, index) {
     const card = document.createElement('div');
     card.className = 'cat-card';
@@ -183,24 +181,32 @@ function createCatCard(cat, index) {
     // Set z-index for stacking (first card on top)
     card.style.zIndex = CONFIG.totalCats - index;
     
-    // Set the cat image as background
-    card.style.backgroundImage = `url('${cat.url}')`;
-    card.style.backgroundColor = '#f0f0f0'; // Loading placeholder
+    // Set placeholder background
+    card.style.backgroundColor = '#f0f0f0';
     
-    // Create a separate image for preloading
-    const preloadImg = new Image();
-    preloadImg.src = cat.url;
-    preloadImg.onload = function() {
-        // When image loads, ensure background is visible
-        card.style.backgroundImage = `url('${cat.url}')`;
-        console.log(`Image loaded: ${cat.id}`);
-    };
-    preloadImg.onerror = function() {
+    // Create the image element
+    const img = document.createElement('img');
+    img.src = cat.url;
+    img.alt = `Cat #${cat.id}`;
+    img.className = 'cat-image';
+    img.loading = 'lazy';
+    
+    // Add error handling
+    img.onerror = function() {
         console.warn(`Image failed to load: ${cat.url}`);
-        // Fallback background
-        card.style.backgroundImage = `url('https://cataas.com/cat?width=350&height=500&cache=${Date.now()}')`;
+        // Fallback to background image
+        card.style.backgroundImage = `url('https://cataas.com/cat?width=400&height=500&cache=${Date.now()}')`;
+        card.style.backgroundSize = 'cover';
+        card.style.backgroundPosition = 'center';
+        img.style.display = 'none';
     };
     
+    img.onload = function() {
+        console.log(`Image loaded: ${cat.id}`);
+        card.style.backgroundColor = 'transparent';
+    };
+    
+    // Create overlay for text
     const overlay = document.createElement('div');
     overlay.className = 'card-overlay';
     
@@ -211,6 +217,9 @@ function createCatCard(cat, index) {
     const tagSpan = document.createElement('div');
     tagSpan.className = 'card-tag';
     tagSpan.textContent = `#${cat.tag}`;
+    
+    overlay.appendChild(idSpan);
+    overlay.appendChild(tagSpan);
     
     // Decision indicators
     const likeIndicator = document.createElement('div');
@@ -223,9 +232,8 @@ function createCatCard(cat, index) {
     dislikeIndicator.textContent = 'PASS';
     dislikeIndicator.style.display = 'none';
     
-    overlay.appendChild(idSpan);
-    overlay.appendChild(tagSpan);
-    
+    // Append everything to card
+    card.appendChild(img);
     card.appendChild(overlay);
     card.appendChild(likeIndicator);
     card.appendChild(dislikeIndicator);
@@ -368,7 +376,7 @@ function handleSwipeDecision(card, liked) {
             showToast(`You liked Kitty #${cat.id}! ❤️`);
         } else {
             appState.dislikedCats.push(cat);
-            showToast(`You passed on Kitty #${cat.id}`);
+            showToast(`You passed on Kitty #${cat.id}! 😿`);
         }
     }
     
