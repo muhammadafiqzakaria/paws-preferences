@@ -9,7 +9,7 @@ A Tinder-like web app for discovering your favorite cats!
 
 ## How to Run
 ### Website Link:
-Simply click this link: https://muhammadafiqzakaria.github.io/paws-preferences/
+Simply click this link: https://muhammadafiqzakaria.github.io/paws-preferences/paws-preferences
 
 ### Dekstop:
 Simply right click on `index.html` and click 'Open with Live Server' OR copy the path and paste in your web browser!
