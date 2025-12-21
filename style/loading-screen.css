@@ -20,14 +20,3 @@
 .cat-icon {
     height: 150px;
 }
-
-.loading-content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.loading-content p {
-    opacity: 0.8;
-    font-size: 16px;
-}
