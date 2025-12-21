@@ -1,0 +1,62 @@
+/* Responsive Design - MOBILE */
+@media (max-width: 480px) {
+
+    .app-container {
+        border-radius: 0;
+        max-height: 100vh;
+        width: 100vw;
+        max-width: 100vw;
+    }
+    
+    .app-header {
+        padding: 15px;
+    }
+    
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .cat-card {
+        height: 500px;
+        max-width: 350px;
+    }
+    
+    .action-buttons {
+        gap: 30px;
+    }
+    
+    .btn-action {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .summary-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .stat-box {
+        width: 80%;
+    }
+    
+    .summary-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 80%;
+        justify-content: center;
+    }
+    
+    /* Hide floating emojis on mobile */
+    .cat-decoration {
+        display: none !important;
+    }
+    
+    .particle {
+        display: none !important;
+    }
+}

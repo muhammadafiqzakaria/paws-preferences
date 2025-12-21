@@ -1,0 +1,83 @@
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.cat-loader {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 30px;
+}
+
+.cat-ear {
+    position: absolute;
+    top: -20px;
+    width: 30px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50% 50% 0 0;
+}
+
+.cat-ear.left-ear {
+    left: 20px;
+    transform: rotate(-30deg);
+}
+
+.cat-ear.right-ear {
+    right: 20px;
+    transform: rotate(30deg);
+}
+
+.cat-face {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-face::before,
+.cat-face::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    top: 30px;
+}
+
+.cat-face::before {
+    left: 20px;
+}
+
+.cat-face::after {
+    right: 20px;
+}
+
+.loading-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.loading-content p {
+    opacity: 0.8;
+    font-size: 16px;
+}

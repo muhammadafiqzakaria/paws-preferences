@@ -1,0 +1,235 @@
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cards-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    min-height: 520px;
+}
+
+.instruction-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 100%;
+}
+
+.instruction-card h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.instruction-card p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.like-text {
+    color: #4CAF50;
+    font-weight: 600;
+    background-color: rgb(255, 255, 255);
+    padding: 4px 10px;
+    border-radius: 10px;
+}
+
+.dislike-text {
+    color: #f44336;
+    font-weight: 600;
+    background-color: rgb(255, 255, 255);
+    padding: 4px 10px;
+    border-radius: 10px;
+}
+
+.btn-start {
+    background-color: white;
+    color: #667eea;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-start:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.cat-card {
+    position: absolute;
+    width: 100%;
+    max-width: 400px;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    flex: 1;
+    min-height: 0; 
+}
+
+.cat-card:active {
+    cursor: grabbing;
+}
+
+.cat-card.dragging {
+    transition: none;
+}
+
+.cat-card.liked {
+    transform: translateX(500px) rotate(30deg);
+    opacity: 0;
+}
+
+.cat-card.disliked {
+    transform: translateX(-500px) rotate(-30deg);
+    opacity: 0;
+}
+
+.card-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    color: white;
+    padding: 20px 15px 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.card-id {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 5px;
+}
+
+.card-tag {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.decision-indicator {
+    position: absolute;
+    top: 30px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 24px;
+    opacity: 0;
+    transform: rotate(25deg);
+    transition: opacity 0.3s ease;
+    border: 3px solid;
+    z-index: 3;
+}
+
+.like-indicator {
+    right: 20px;
+    color: #4CAF50;
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.dislike-indicator {
+    left: 20px;
+    color: #f44336;
+    border-color: #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.btn-action {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-action:active {
+    transform: scale(0.95);
+}
+
+.btn-dislike {
+    background-color: white;
+    color: #f44336;
+    border: 3px solid #f44336;
+}
+
+.btn-dislike:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-like {
+    background-color: white;
+    color: #4CAF50;
+    border: 3px solid #4CAF50;
+}
+
+.btn-like:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.5s ease;
+}

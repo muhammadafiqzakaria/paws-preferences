@@ -1,0 +1,19 @@
+/* Toast Notifications */
+.toast {    
+    position: fixed;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%) translateY(250px);
+    background-color: #1a1a1abb;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
