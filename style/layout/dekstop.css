@@ -75,6 +75,7 @@
         background-color: white;
     }
     
+    /*The rgb line flowing at the top*/
     .app-container::before {
         content: '';
         position: absolute;
