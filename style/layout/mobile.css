@@ -5,6 +5,61 @@
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
+    /* Floating Cat Decorations - ONLY VISIBLE ON DESKTOP */
+    .cat-decoration {
+        position: fixed;
+        font-size: 32px;
+        opacity: 0.15;
+        z-index: 1;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+        display: block !important; /* Force show on desktop */
+    }
+    
+    .cat-decoration:nth-child(1) {
+        top: 10%;
+        left: 5%;
+        animation-delay: 0s;
+        animation-duration: 25s;
+    }
+    
+    .cat-decoration:nth-child(2) {
+        top: 20%;
+        right: 10%;
+        animation-delay: 5s;
+        animation-duration: 30s;
+    }
+    
+    .cat-decoration:nth-child(3) {
+        bottom: 30%;
+        left: 15%;
+        animation-delay: 10s;
+        animation-duration: 20s;
+    }
+    
+    .cat-decoration:nth-child(4) {
+        bottom: 15%;
+        right: 5%;
+        animation-delay: 15s;
+        animation-duration: 35s;
+    }
+
+    /* Animated background elements */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+            radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+        z-index: -1;
+        animation: pulseBackground 20s infinite alternate;
+    }
+
     .app-container {
         border-radius: 0;
         max-height: 90vh;
@@ -12,6 +67,25 @@
         max-width: 100vw;
         margin: 10px;
         border-radius: 10px;
+    }
+
+    /*The rgb line flowing at the top*/
+    .app-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, 
+            #ff6b6b, 
+            #ffd93d, 
+            #6bcf7f, 
+            #4d96ff, 
+            #9d4edd);
+        background-size: 500% 100%;
+        animation: gradientShift 10s linear infinite;
+        z-index: 10;
     }
     
     .app-header {
